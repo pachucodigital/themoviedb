@@ -1,12 +1,13 @@
 package com.themoviedatabase.core.presentation.ui
 
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.themoviedatabase.core.presentation.contracts.BasePresenterContract
 import com.themoviedatabase.core.presentation.contracts.BaseViewContract
 
-abstract class BaseActivity<P: BasePresenterContract<BaseViewContract>>: AppCompatActivity(),  BaseViewContract{
+abstract class BaseFragment<P: BasePresenterContract<BaseViewContract>>: Fragment(), BaseViewContract {
 
-    lateinit var presenterContract: P
+    lateinit var presenterContract: BasePresenterContract<BaseViewContract>
 
     override fun showMessage() {
 
@@ -15,5 +16,7 @@ abstract class BaseActivity<P: BasePresenterContract<BaseViewContract>>: AppComp
     override fun showError() {
 
     }
+
+    override fun getPresenter(): BasePresenterContract<BaseViewContract> = presenterContract
 
 }
