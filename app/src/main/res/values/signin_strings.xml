@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="welcome">Bienvenido</string>
+    <string name="hint_input_user">Usuario</string>
+    <string name="hint_input_password">Contraseña</string>
+    <string name="btn_continue_signing">Continuar</string>
+    <string
+        name="welcome_message">Para poder editar y valorar en TMDb, así como para obtener recomendaciones personales, deberás acceder con tu cuenta. Si no tienes una, registrarse para obtenerla es gratis y simple. Pulsa <a href="https://www.themoviedb.org/signup">aquí</a> para empezar.</string>
+
+</resources>
