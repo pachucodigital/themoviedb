@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="cerulian_200">#81d4fa</color>
+    <color name="cerulian_500">#FF01B4E4</color>
+    <color name="cerulian_700">#03a9f4</color>
+    <color name="teal_200">#1ed5a9</color>
+    <color name="teal_500">#69ffdb</color>
+    <color name="teal_700">#00a37a</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="tangaroa_200">#032541</color>
+    <color name="tangaroa_700">#031D33</color>
+
+</resources>
