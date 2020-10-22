@@ -3,7 +3,6 @@ package com.themoviedatabase.core.domain.handler
 import com.themoviedatabase.core.domain.exception.MDBException
 import com.themoviedatabase.core.domain.exception.NetworkException
 import com.themoviedatabase.core.domain.exception.ServerException
-import com.themoviedatabase.core.domain.model.MDBApiError
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import retrofit2.HttpException
