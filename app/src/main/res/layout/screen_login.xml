@@ -135,4 +135,5 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"></TextView>
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <include layout="@layout/view_loader"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

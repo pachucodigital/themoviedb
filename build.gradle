@@ -37,4 +37,5 @@ ext {
     converter_serialization_version = '0.8.0'
     converter_scalars_version = '2.9.0'
 
+    lottie_version ="3.4.0"
 }
