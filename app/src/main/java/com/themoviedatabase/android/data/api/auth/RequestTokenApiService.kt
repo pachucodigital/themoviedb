@@ -8,7 +8,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
 
-interface RequestTokenApi {
+interface RequestTokenApiService {
     @GET("${BuildConfig.V3}/authentication/token/new")
     suspend fun requestToken(@Query("api_key") apiKey: String): RequestTokenDto
 

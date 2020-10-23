@@ -1,4 +1,4 @@
-package com.themoviedatabase.android.domain.repository.auth
+package com.themoviedatabase.android.domain.repository.auth.token
 
 import com.themoviedatabase.android.data.model.auth.ValidateTokenRequestParam
 import com.themoviedatabase.android.domain.model.auth.MDBRequestToken

@@ -1,5 +1,6 @@
 package com.themoviedatabase.android
 
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -22,5 +23,11 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications))
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+
+    companion object {
+        fun provideNavigateIntent(): Intent {
+            return Intent().setClassName(BuildConfig.APPLICATION_ID, MainActivity::class.simpleName!!)
+        }
     }
 }

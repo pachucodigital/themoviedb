@@ -1,11 +1,13 @@
 package com.themoviedatabase.android.ui.siging
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.view.View
 import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doOnTextChanged
 import com.google.android.material.snackbar.Snackbar
+import com.themoviedatabase.android.MainActivity
 import com.themoviedatabase.android.databinding.ScreenLoginBinding
 import com.themoviedatabase.android.presentation.siging.presenter.SigingPresenter
 import com.themoviedatabase.android.presentation.siging.view.SigingView
@@ -38,17 +40,13 @@ class SigningScreen : BaseActivity<SigingPresenter>(), SigingView {
         }
     }
 
-    private fun doLogin() {
-        presenter.doLogin(binding.sigingInputUser.text.toString(), binding.sigingInputPassword.text.toString())
-    }
-
     private fun validateFields() {
         presenter.validateFields(binding.sigingInputUser.text.toString(), binding.sigingInputPassword.text.toString())
     }
 
     override fun loginSuccess() {
+        startActivity(MainActivity.provideNavigateIntent())
     }
-
 
     override fun showUserFieldError(obligatoryEmptyField: Int) {
         binding.sigingInputLayoutUser.error = getString(obligatoryEmptyField)

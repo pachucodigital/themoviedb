@@ -2,13 +2,15 @@ package com.themoviedatabase.android.presentation.siging.presenter
 
 import android.util.Log
 import com.themoviedatabase.android.R
+import com.themoviedatabase.android.data.model.auth.CreateSessionRequestParam
 import com.themoviedatabase.android.data.model.auth.SigningRequestParams
 import com.themoviedatabase.android.data.model.auth.ValidateTokenRequestParam
 import com.themoviedatabase.android.di.distpacher.MainDispatcher
 import com.themoviedatabase.android.domain.model.auth.MDBRequestToken
 import com.themoviedatabase.android.domain.model.auth.exception.SigningException
-import com.themoviedatabase.android.domain.usecases.auth.ValidateTokenUseCase
-import com.themoviedatabase.android.domain.usecases.auth.RequestTokenUseCase
+import com.themoviedatabase.android.domain.usecases.auth.session.CreateSessionUseCase
+import com.themoviedatabase.android.domain.usecases.auth.token.ValidateTokenUseCase
+import com.themoviedatabase.android.domain.usecases.auth.token.RequestTokenUseCase
 import com.themoviedatabase.android.domain.usecases.sigining.ValidateFormSigingUseCase
 import com.themoviedatabase.android.presentation.siging.view.SigingView
 import com.themoviedatabase.core.domain.exception.MDBException
@@ -16,14 +18,14 @@ import com.themoviedatabase.core.domain.model.MDBResult
 import com.themoviedatabase.core.presentation.base.MDBBasePresenter
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.onCompletion
-import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
 class SigingPresenter @Inject constructor(@MainDispatcher private val mainDispatcher: CoroutineDispatcher,
                                           private val validateFormUseCase: ValidateFormSigingUseCase,
                                           private val requestTokenUseCase: RequestTokenUseCase,
-                                          private val validateTokenUseCase: ValidateTokenUseCase) : MDBBasePresenter<SigingView>() {
+                                          private val validateTokenUseCase: ValidateTokenUseCase,
+                                          private val createSessionUseCase: CreateSessionUseCase,
+) : MDBBasePresenter<SigingView>() {
 
     @ExperimentalCoroutinesApi
     private fun requestToken(params: SigningRequestParams) {
@@ -94,7 +96,26 @@ class SigingPresenter @Inject constructor(@MainDispatcher private val mainDispat
 
     private fun createSessionLogin(token: String) {
         launch {
-
+            createSessionUseCase.invoke(CreateSessionRequestParam(token)).collect {
+                when (it){
+                    is MDBResult.Success -> {
+                        launch(mainDispatcher) {
+                           view?.loginSuccess()
+                        }
+                    }
+                    is MDBResult.Error -> {
+                        launch(mainDispatcher) {
+                            view?.showMessage(it.exception.message!!)
+                            view?.showLoader(false)
+                        }
+                    }
+                    else -> {
+                        launch(mainDispatcher) {
+                            view?.showLoader(true)
+                        }
+                    }
+                }
+            }
         }
     }
 

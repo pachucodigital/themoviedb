@@ -1,9 +1,9 @@
-package com.themoviedatabase.android.domain.usecases.auth
+package com.themoviedatabase.android.domain.usecases.auth.token
 
 import com.themoviedatabase.android.data.model.auth.ValidateTokenRequestParam
 import com.themoviedatabase.android.di.distpacher.IoDispatcher
 import com.themoviedatabase.android.domain.model.auth.MDBRequestToken
-import com.themoviedatabase.android.domain.repository.auth.RequestTokenRepository
+import com.themoviedatabase.android.domain.repository.auth.token.RequestTokenRepository
 import com.themoviedatabase.core.domain.flow.FlowUseCase
 import com.themoviedatabase.core.domain.model.MDBResult
 import kotlinx.coroutines.CoroutineDispatcher
