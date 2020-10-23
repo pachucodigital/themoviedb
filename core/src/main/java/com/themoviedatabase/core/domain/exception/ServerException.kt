@@ -1,5 +1,3 @@
 package com.themoviedatabase.core.domain.exception
 
-import java.lang.Exception
-
-class ServerException(code: Int): Throwable()
+class ServerException(val code: Int): Throwable()

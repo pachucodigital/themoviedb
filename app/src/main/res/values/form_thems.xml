@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextInput" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="hintTextAppearance">@style/HintText</item>
+        <item name="errorTextAppearance">@style/ErrorText</item>
+        <item name="errorTextColor">@color/red</item>
+        <item name="boxBackgroundColor">@color/tangaroa_200</item>
+        <item name="boxStrokeColor">@color/box_selector_teal</item>
+        <item name="hintTextColor">@color/box_selector_teal</item>
+        <item name="android:textColorHint">@color/box_selector_teal</item>
+        <item name="android:textCursorDrawable">@drawable/img_cursor</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="ErrorText" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/abc_text_size_caption_material</item>
+    </style>
+
+    <style name="HintText" parent="TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">@dimen/abc_text_size_caption_material</item>
+        <item name="android:fontFamily">@font/helvetica_neue_light</item>
+    </style>
+
+    <style name="MDBTextInputLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="MDBTextInputEdit">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+
+</resources>

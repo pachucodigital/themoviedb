@@ -10,5 +10,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="tangaroa_200">#032541</color>
     <color name="tangaroa_700">#031D33</color>
-
+   <color name="red">#fc0317</color>
 </resources>

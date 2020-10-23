@@ -1,14 +1,16 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext.kotlin_version = "1.4.10"
+    ext.hilt_version = "2.28-alpha"
     repositories {
         google()
         jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.0"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -26,15 +28,34 @@ task clean(type: Delete) {
 }
 
 ext {
+
+    // Android Build Variants
+    compileSdkVersion = 29
+    minSdkVersion = 21
+    targetSdkVersion = 28
+    buildToolsVersion = '30.0.2'
+    // App Version
+    versionCode = 1
+    versionName = '0.1.0'
+
+
     appcompact_version = "1.2.0"
     material_version ="1.2.1"
     coroutine_version = "1.3.9"
+    //Kotlin Serialization
     serialization_version = "1.0.0"
+
     serialization_runtime_version = "0.20.0"
+    serialization_core = "1.0.0-RC"
 
     okhttp3_version = '4.9.0'
     retrofit_version = '2.9.0'
-    converter_serialization_version = '0.8.0'
     converter_scalars_version = '2.9.0'
+    converter_serialization_version = '0.8.0'
 
+    //gson
+    //gson_version = '2.8.6'
+
+    //Lottie
+    lottie_version ="3.4.0"
 }
