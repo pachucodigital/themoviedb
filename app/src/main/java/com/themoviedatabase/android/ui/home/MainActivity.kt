@@ -1,29 +1,43 @@
-package com.themoviedatabase.android
+package com.themoviedatabase.android.ui.home
 
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.themoviedatabase.android.BuildConfig
+import com.themoviedatabase.android.R
+import com.themoviedatabase.android.databinding.ScreenHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ScreenHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
+        binding = ScreenHomeBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-        val navController = findNavController(R.id.nav_host_fragment)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications))
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        setSupportActionBar(binding.toolbar).apply {
+
+        }
+
+        setupNavigation()
     }
+
+    private fun setupNavigation(){
+        val navController = findNavController(R.id.nav_host_fragment)
+        val appBarConfiguration = AppBarConfiguration(setOf(R.id.navigation_latest, R.id.navigation_popular, R.id.navigation_upcoming ))
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        binding.navView.setupWithNavController(navController)
+
+    }
+
+
 
     companion object {
         fun provideNavigateIntent(): Intent {
