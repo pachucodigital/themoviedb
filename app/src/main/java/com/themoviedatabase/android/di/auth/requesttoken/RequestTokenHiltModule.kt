@@ -9,14 +9,17 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import javax.inject.Singleton
 
 @InstallIn(ApplicationComponent::class)
 @Module
 abstract class RequestTokenHiltModule {
 
     @Binds
+    @Singleton
     abstract fun provideRequestTokenDataSource(impl: RequestTokenApiDataSourceImp): RequestTokenApiDataSource
 
     @Binds
+    @Singleton
     abstract fun provideRequestTokenRepository(impl: RequestTokenRepositoryImp): RequestTokenRepository
 }

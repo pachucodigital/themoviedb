@@ -16,15 +16,15 @@ import javax.inject.Qualifier
 @InstallIn(ApplicationComponent::class)
 @Module
 object RetrofitHiltModule {
-    @ExperimentalSerializationApi
+
     @Provides
     @DefaultRetrofitV3
+    @ExperimentalSerializationApi
     fun provideRetrofit(@DefaultOkHttpClient okHttpClient: OkHttpClient): Retrofit {
-        val contentType = "application/json".toMediaType()
         return Retrofit.Builder()
             .baseUrl(BuildConfig.HOST)
             .client(okHttpClient)
-            .addConverterFactory(Json.asConverterFactory(contentType))
+            .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
             .build()
     }
 }

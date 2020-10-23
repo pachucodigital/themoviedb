@@ -3,24 +3,21 @@ package com.themoviedatabase.android.ui.siging
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.view.View
-import com.themoviedatabase.android.data.api.auth.RequestTokenApi
-import com.themoviedatabase.android.data.auth.requesttoken.RequestTokenRepositoryImp
-import com.themoviedatabase.android.data.auth.requesttoken.datasource.RequestTokenApiDataSourceImp
+import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doOnTextChanged
+import com.google.android.material.snackbar.Snackbar
 import com.themoviedatabase.android.databinding.ScreenLoginBinding
-import com.themoviedatabase.android.di.clients.RetrofitModule
-import com.themoviedatabase.android.domain.usecases.auth.RequestTokenUseCase
 import com.themoviedatabase.android.presentation.siging.presenter.SigingPresenter
 import com.themoviedatabase.android.presentation.siging.view.SigingView
 import com.themoviedatabase.core.ui.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class SigningScreen : BaseActivity<SigingPresenter>(), SigingView {
     private lateinit var binding: ScreenLoginBinding
     @Inject
-    lateinit var presenter:SigingPresenter
+    lateinit var presenter: SigingPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +27,14 @@ class SigningScreen : BaseActivity<SigingPresenter>(), SigingView {
         initView()
         binding.sigingDescription.movementMethod = LinkMovementMethod.getInstance()
         binding.btnContinue.setOnClickListener {
-            doLogin()
+            validateFields()
+        }
+        binding.sigingInputPassword.doOnTextChanged { _, _, _, _ ->
+            binding.sigingInputLayoutPassword.error = null
+        }
+
+        binding.sigingInputUser.doOnTextChanged { _, _, _, _ ->
+            binding.sigingInputLayoutUser.error = null
         }
     }
 
@@ -38,7 +42,20 @@ class SigningScreen : BaseActivity<SigingPresenter>(), SigingView {
         presenter.doLogin(binding.sigingInputUser.text.toString(), binding.sigingInputPassword.text.toString())
     }
 
+    private fun validateFields() {
+        presenter.validateFields(binding.sigingInputUser.text.toString(), binding.sigingInputPassword.text.toString())
+    }
+
     override fun loginSuccess() {
+    }
+
+
+    override fun showUserFieldError(obligatoryEmptyField: Int) {
+        binding.sigingInputLayoutUser.error = getString(obligatoryEmptyField)
+    }
+
+    override fun showPasswordFieldError(obligatoryEmptyField: Int) {
+        binding.sigingInputLayoutPassword.error = getString(obligatoryEmptyField)
     }
 
     override fun initView() {
@@ -55,7 +72,11 @@ class SigningScreen : BaseActivity<SigingPresenter>(), SigingView {
     }
 
     override fun showMessage(message: String) {
+        Snackbar.make(binding.signingMainContent, message, Snackbar.LENGTH_SHORT).show()
+    }
 
+    override fun showMessage(message: Int) {
+        Snackbar.make(binding.signingMainContent, message, Snackbar.LENGTH_SHORT).show()
     }
 
 

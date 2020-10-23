@@ -43,14 +43,13 @@ dependencies {
     //kotlin dependencies
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.ext.coroutine_version"
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$rootProject.ext.serialization_version")
-    implementation "org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.0-RC"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-core:$rootProject.ext.serialization_core"
 
     //retrofit and okhttp dependencies
     implementation "com.squareup.okhttp3:okhttp:$rootProject.ext.okhttp3_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttp3_version"
     implementation "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofit_version"
     implementation "com.squareup.retrofit2:converter-scalars:$rootProject.ext.converter_scalars_version"
-
 
     //testing dependencies
     testImplementation 'junit:junit:4.13.1'
