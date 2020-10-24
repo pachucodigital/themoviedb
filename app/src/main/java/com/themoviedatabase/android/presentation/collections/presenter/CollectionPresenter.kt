@@ -6,13 +6,14 @@ import com.themoviedatabase.android.domain.model.colletions.MDBCollectionCategor
 import com.themoviedatabase.android.domain.usecases.collection.movies.GetMovieCollectionUseCase
 import com.themoviedatabase.android.presentation.collections.view.CollectionView
 import com.themoviedatabase.android.ui.collections.model.MDBCollection
+import com.themoviedatabase.core.domain.exception.NetworkException
 import com.themoviedatabase.core.domain.model.MDBResult
 import com.themoviedatabase.core.presentation.base.MDBBasePresenter
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.launch
+import java.net.UnknownHostException
 import javax.inject.Inject
 
 class CollectionPresenter @Inject constructor(@MainDispatcher private val mainDispatcher: CoroutineDispatcher,
@@ -21,11 +22,7 @@ class CollectionPresenter @Inject constructor(@MainDispatcher private val mainDi
     @ExperimentalCoroutinesApi
     fun loadCollection(category: MDBCollectionCategory) {
         launch {
-            movieCollectionUseCase.invoke(category).onCompletion {
-                launch(mainDispatcher) {
-                    view?.showLoader(false)
-                }
-            }.collect {
+            movieCollectionUseCase.invoke(category).collect {
                 when(it) {
                     is MDBResult.Success -> {
                         launch(mainDispatcher) {
@@ -33,12 +30,18 @@ class CollectionPresenter @Inject constructor(@MainDispatcher private val mainDi
                                 MDBCollection(recent.id, recent.title, recent.overview, recent.poster_path, recent.toString())
                             }
                             view?.showCollectionMovies(collection)
+                            view?.showLoader(false)
                         }
                     }
                     is MDBResult.Error -> {
-                        Log.e("getMovieCollection", "$it")
                         launch(mainDispatcher) {
-                            view?.showMessage(it.exception.message!!)
+                            Log.e("LoadCollection", "${it.exception}")
+                            if(it.exception is NetworkException) {
+                                view?.showRetry()
+                            } else {
+                                view?.showMessage(it.exception.message!!)
+                            }
+                            view?.showLoader(false)
                         }
                     }
                     else -> {

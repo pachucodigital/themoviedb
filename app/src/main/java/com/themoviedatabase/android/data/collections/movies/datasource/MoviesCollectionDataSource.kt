@@ -5,8 +5,12 @@ import com.themoviedatabase.android.data.model.movies.MovieDto
 import kotlinx.coroutines.flow.Flow
 
 interface MoviesCollectionDataSource {
-    fun getRecentCollection(): Flow<MovieDto>
+    fun getRecentCollection(): Flow<MovieDto?>
     fun getPopularCollection(): Flow<List<MoviesCollectionDto>>
     fun getUpcomingCollection(): Flow<List<MoviesCollectionDto>>
+
+    suspend fun saveRecentCollection(list: List<MovieDto>)
+    suspend fun savePopularCollection(list: List<MoviesCollectionDto>)
+    suspend fun saveUpomingCollection(list: List<MoviesCollectionDto>)
 
 }

@@ -29,4 +29,16 @@ class MoviesCollectionRemoteDataSource @Inject constructor(private val movieApiS
             emit(result.results)
         }
     }
+
+    override suspend fun saveRecentCollection(list: List<MovieDto>) {
+        // Not Implemented for Remote
+    }
+
+    override suspend fun savePopularCollection(list: List<MoviesCollectionDto>) {
+        // Not Implemented for Remote
+    }
+
+    override suspend fun saveUpomingCollection(list: List<MoviesCollectionDto>) {
+        // Not Implemented for Remote
+    }
 }

@@ -20,7 +20,7 @@ class DetailMovieScreen:  BaseActivity<MovieDetailPresenter>(), MovieDetailView 
     lateinit var presenter: MovieDetailPresenter
 
     private lateinit var binding: ScreenDetailBinding
-
+        @ExperimentalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ScreenDetailBinding.inflate(layoutInflater)

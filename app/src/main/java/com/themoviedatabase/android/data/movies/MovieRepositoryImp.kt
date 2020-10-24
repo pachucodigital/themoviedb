@@ -5,10 +5,12 @@ import com.themoviedatabase.android.data.movies.datasource.MovieRemoteDataSource
 import com.themoviedatabase.android.domain.model.movies.MDBMovie
 import com.themoviedatabase.android.domain.repository.movies.MovieRepository
 import com.themoviedatabase.core.domain.model.MDBResult
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 class MovieRepositoryImp @Inject constructor(private  val dataSource: MovieRemoteDataSource): MovieRepository {
+    @ExperimentalCoroutinesApi
     override fun getDetailMovie(id: Int): Flow<MDBResult<MDBMovie>> {
         return flow {
             dataSource.getDetailMovie(id).onStart {

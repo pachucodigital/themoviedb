@@ -1,16 +1,15 @@
 package com.themoviedatabase.android.ui.collections
 
-import android.os.Bundle
-import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.themoviedatabase.android.domain.model.colletions.MDBCollectionCategory
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 
 class UpComingCollectionView : BaseCollectionView() {
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        loadCollection(MDBCollectionCategory.UpComing)
+    @ExperimentalCoroutinesApi
+    override fun loadCollection() {
+        presenter.loadCollection(MDBCollectionCategory.UpComing)
     }
 
     override fun onSelectMovie(movieId: Int) {

@@ -8,4 +8,6 @@ interface CollectionRepository {
     fun getRecentMoviesCollection(): Flow<MDBResult<List<MDBCollection>>>
     fun getMoviesPopularCollection(): Flow<MDBResult<List<MDBCollection>>>
     fun getMoviesUpComingCollection(): Flow<MDBResult<List<MDBCollection>>>
+
+
 }

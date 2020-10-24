@@ -5,4 +5,5 @@ import com.themoviedatabase.core.presentation.contracts.BaseViewContract
 
 interface CollectionView: BaseViewContract {
     fun showCollectionMovies(collection: List<MDBCollection>)
+    fun showRetry()
 }

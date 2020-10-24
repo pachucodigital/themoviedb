@@ -19,7 +19,6 @@ class GetMovieCollectionUseCase @Inject constructor(@IoDispatcher dispatcher: Co
 
             is MDBCollectionCategory.Popular -> {
                 repository.getMoviesPopularCollection()
-
             }
 
             else -> {

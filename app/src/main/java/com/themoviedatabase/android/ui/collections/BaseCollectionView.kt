@@ -1,11 +1,13 @@
 package com.themoviedatabase.android.ui.collections
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
+import com.themoviedatabase.android.R
 import com.themoviedatabase.android.databinding.FragmentCollectionsBinding
 import com.themoviedatabase.android.domain.model.colletions.MDBCollectionCategory
 import com.themoviedatabase.android.presentation.collections.presenter.CollectionPresenter
@@ -22,6 +24,7 @@ abstract class BaseCollectionView : BaseFragment<CollectionPresenter>(), Collect
     lateinit var presenter: CollectionPresenter
 
     protected var binding: FragmentCollectionsBinding? = null
+    protected var mSnackbar: Snackbar? = null
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -33,10 +36,12 @@ abstract class BaseCollectionView : BaseFragment<CollectionPresenter>(), Collect
         return binding?.root
     }
 
-    @ExperimentalCoroutinesApi
-    protected fun loadCollection(category: MDBCollectionCategory) {
-        presenter.loadCollection(category)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        loadCollection()
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -70,8 +75,18 @@ abstract class BaseCollectionView : BaseFragment<CollectionPresenter>(), Collect
         binding?.moviesRecyclerview?.adapter = CollectionAdapter(collection,this)
     }
 
+    override fun showRetry() {
+        mSnackbar = Snackbar.make(binding?.moviesMainContent!!, getString(R.string.error_conect_network), Snackbar.LENGTH_INDEFINITE)
+            .setAction(
+                getString(R.string.error_retry)
+            ) {
+                loadCollection()
+                mSnackbar?.dismiss()
+            }
+        mSnackbar?.show()
+    }
 
-
+    abstract fun loadCollection()
 
 
 }
