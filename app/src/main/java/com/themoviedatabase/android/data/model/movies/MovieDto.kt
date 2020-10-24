@@ -11,7 +11,6 @@ data class MovieDto(
         @SerialName("backdrop_path") val backdrop_path: String?,
         @SerialName("genres") val genres: List<GenreDto>? = null,
         @SerialName("homepage") val homepage: String? = null,
-
         @SerialName("id") val id: Int,
         @SerialName("imdb_id") val imdb_id: String?,
         @SerialName("original_language") val original_language: String,
@@ -24,7 +23,7 @@ data class MovieDto(
         @SerialName("release_date") val release_date: String,
         @SerialName("revenue") val revenue: Int,
         @SerialName("runtime") val runtime: Int,
-        @SerialName("spoken_languages") val spoken_languages: List<String>? ,
+        @SerialName("spoken_languages") val spoken_languages: List<SpokenLanguagesDto>? ,
         @SerialName("status") val status: String,
         @SerialName("tagline") val tagline: String,
         @SerialName("title") val title: String,

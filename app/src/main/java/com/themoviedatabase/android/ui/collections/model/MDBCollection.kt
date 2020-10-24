@@ -1,4 +1,4 @@
-package com.themoviedatabase.android.ui.home.movies.model
+package com.themoviedatabase.android.ui.collections.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

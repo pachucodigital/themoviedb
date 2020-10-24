@@ -1,4 +1,4 @@
-package com.themoviedatabase.android.ui.home.movies
+package com.themoviedatabase.android.ui.collections
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,35 +6,35 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import com.themoviedatabase.android.databinding.FragmentMoviesBinding
-import com.themoviedatabase.android.domain.model.movies.MDBMoviesCategory
-import com.themoviedatabase.android.presentation.movies.presenter.MoviePresenter
-import com.themoviedatabase.android.presentation.movies.view.MovieView
-import com.themoviedatabase.android.ui.home.movies.adapter.MoviesCollectionAdapter
-import com.themoviedatabase.android.ui.home.movies.model.MDBCollection
+import com.themoviedatabase.android.databinding.FragmentCollectionsBinding
+import com.themoviedatabase.android.domain.model.colletions.MDBCollectionCategory
+import com.themoviedatabase.android.presentation.collections.presenter.CollectionPresenter
+import com.themoviedatabase.android.presentation.collections.view.CollectionView
+import com.themoviedatabase.android.ui.collections.adapter.CollectionAdapter
+import com.themoviedatabase.android.ui.collections.model.MDBCollection
 import com.themoviedatabase.core.ui.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 @AndroidEntryPoint
-abstract class BaseMovieView : BaseFragment<MoviePresenter>(), MovieView {
+abstract class BaseCollectionView : BaseFragment<CollectionPresenter>(), CollectionView , CollectionAdapter.SelectMovieListener{
     @Inject
-    lateinit var presenter: MoviePresenter
+    lateinit var presenter: CollectionPresenter
 
-    protected var binding: FragmentMoviesBinding? = null
+    protected var binding: FragmentCollectionsBinding? = null
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentMoviesBinding.inflate(inflater, container, false)
+        binding = FragmentCollectionsBinding.inflate(inflater, container, false)
         initView()
         return binding?.root
     }
 
     @ExperimentalCoroutinesApi
-    protected fun loadCollection(category: MDBMoviesCategory) {
+    protected fun loadCollection(category: MDBCollectionCategory) {
         presenter.loadCollection(category)
     }
 
@@ -67,11 +67,7 @@ abstract class BaseMovieView : BaseFragment<MoviePresenter>(), MovieView {
     }
 
     override fun showCollectionMovies(collection: List<MDBCollection>) {
-        binding?.moviesRecyclerview?.adapter = MoviesCollectionAdapter(collection, object : MoviesCollectionAdapter.SelectMovieListener{
-                override fun onSelectMovie(movieId: Int) {
-
-            }
-        })
+        binding?.moviesRecyclerview?.adapter = CollectionAdapter(collection,this)
     }
 
 

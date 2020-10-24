@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class MoviesCollectionDataSourceImp @Inject constructor(private val movieApiService: MoviesCollectionApiService): MoviesCollectionDataSource {
+class MoviesCollectionRemoteDataSource @Inject constructor(private val movieApiService: MoviesCollectionApiService): MoviesCollectionDataSource {
     override fun getRecentCollection(): Flow<MovieDto> {
         return flow {
             val result = movieApiService.getRecentCollection(BuildConfig.API_KEY)

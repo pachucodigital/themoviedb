@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="movies_genres">Genres %1s</string>
+    <string name="movies_language">Language %1s</string>
+    <string name="movies_vote_total">Total Votes %1s</string>
+    <string name="movies_vote_average">Vote Average %1s</string>
+</resources>

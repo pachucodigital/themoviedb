@@ -2,8 +2,8 @@ package com.themoviedatabase.android.di.collection.movies
 
 import com.themoviedatabase.android.data.collections.movies.MoviesCollectionRepositoryImp
 import com.themoviedatabase.android.data.collections.movies.datasource.MoviesCollectionDataSource
-import com.themoviedatabase.android.data.collections.movies.datasource.MoviesCollectionDataSourceImp
-import com.themoviedatabase.android.domain.repository.auth.repository.MoviesCollectionRepository
+import com.themoviedatabase.android.data.collections.movies.datasource.MoviesCollectionRemoteDataSource
+import com.themoviedatabase.android.domain.repository.collections.CollectionRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -17,9 +17,9 @@ abstract class MoviesCollectionHiltModule {
 
     @Binds
     @Singleton
-    abstract fun provideMoviesCollectionDataSource(impl: MoviesCollectionDataSourceImp): MoviesCollectionDataSource
+    abstract fun provideMoviesCollectionDataSource(impl: MoviesCollectionRemoteDataSource): MoviesCollectionDataSource
 
     @Binds
     @Singleton
-    abstract fun provideMoviesCollectionRepository(impl: MoviesCollectionRepositoryImp): MoviesCollectionRepository
+    abstract fun provideMoviesCollectionRepository(impl: MoviesCollectionRepositoryImp): CollectionRepository
 }

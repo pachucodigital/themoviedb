@@ -31,6 +31,9 @@
         <item name="titleTextColor">@color/teal_200</item>
     </style>
 
+    <style name="ItemCollectionTitle" parent="MDBTitle">
+        <item name="android:textColor">@color/teal_500</item>
+    </style>
     <style name="ItemCollectionSubtitle" parent="MDBSubtitle">
         <item name="android:textColor">@color/teal_500</item>
     </style>

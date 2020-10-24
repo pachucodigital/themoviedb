@@ -62,7 +62,9 @@
         <item name="android:background">@color/tangaroa_200</item>
         <item name="titleTextColor">@color/white</item>
     </style>
-
+    <style name="ItemCollectionTitle" parent="MDBTitle">
+        <item name="android:textColor">@color/tangaroa_700</item>
+    </style>
     <style name="ItemCollectionSubtitle" parent="MDBSubtitle">
         <item name="android:textColor">@color/tangaroa_700</item>
     </style>

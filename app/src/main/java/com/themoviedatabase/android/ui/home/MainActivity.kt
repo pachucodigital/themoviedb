@@ -21,11 +21,7 @@ class MainActivity : AppCompatActivity() {
         binding = ScreenHomeBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
-        setSupportActionBar(binding.toolbar).apply {
-
-        }
-
+        setSupportActionBar(binding.toolbar)
         setupNavigation()
     }
 
@@ -34,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(setOf(R.id.navigation_latest, R.id.navigation_popular, R.id.navigation_upcoming ))
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.navView.setupWithNavController(navController)
+
 
     }
 

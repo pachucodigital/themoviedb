@@ -3,8 +3,8 @@ package com.themoviedatabase.android.data.collections.movies
 import android.util.Log
 import com.themoviedatabase.android.data.collections.movies.datasource.MapperMovieCollection
 import com.themoviedatabase.android.data.collections.movies.datasource.MoviesCollectionDataSource
-import com.themoviedatabase.android.domain.model.movies.MDBMovieCollection
-import com.themoviedatabase.android.domain.repository.auth.repository.MoviesCollectionRepository
+import com.themoviedatabase.android.domain.model.colletions.MDBCollection
+import com.themoviedatabase.android.domain.repository.collections.CollectionRepository
 import com.themoviedatabase.core.domain.model.MDBResult
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
@@ -12,10 +12,10 @@ import javax.inject.Inject
 
 class MoviesCollectionRepositoryImp @Inject constructor(private val dataSourceImp: MoviesCollectionDataSource ,
                                                         private val mapperCollections: MapperMovieCollection,
-                                                        ) : MoviesCollectionRepository {
+                                                        ) : CollectionRepository {
 
     @ExperimentalCoroutinesApi
-    override fun getRecentMoviesCollection(): Flow<MDBResult<List<MDBMovieCollection>>> {
+    override fun getRecentMoviesCollection(): Flow<MDBResult<List<MDBCollection>>> {
         return flow {
            dataSourceImp.getRecentCollection().onStart {
                emit(MDBResult.Loading)
@@ -31,7 +31,7 @@ class MoviesCollectionRepositoryImp @Inject constructor(private val dataSourceIm
     }
 
     @ExperimentalCoroutinesApi
-    override fun getMoviesPopularCollection(): Flow<MDBResult<List<MDBMovieCollection>>> {
+    override fun getMoviesPopularCollection(): Flow<MDBResult<List<MDBCollection>>> {
         return flow {
             dataSourceImp.getPopularCollection().onStart {
                 emit(MDBResult.Loading)
@@ -46,7 +46,7 @@ class MoviesCollectionRepositoryImp @Inject constructor(private val dataSourceIm
     }
 
     @ExperimentalCoroutinesApi
-    override fun getMoviesUpComingCollection(): Flow<MDBResult<List<MDBMovieCollection>>> {
+    override fun getMoviesUpComingCollection(): Flow<MDBResult<List<MDBCollection>>> {
         return flow {
             dataSourceImp.getUpcomingCollection().onStart {
                 emit(MDBResult.Loading)

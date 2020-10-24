@@ -1,11 +1,11 @@
-package com.themoviedatabase.android.presentation.movies.presenter
+package com.themoviedatabase.android.presentation.collections.presenter
 
 import android.util.Log
 import com.themoviedatabase.android.di.distpacher.MainDispatcher
-import com.themoviedatabase.android.domain.model.movies.MDBMoviesCategory
+import com.themoviedatabase.android.domain.model.colletions.MDBCollectionCategory
 import com.themoviedatabase.android.domain.usecases.collection.movies.GetMovieCollectionUseCase
-import com.themoviedatabase.android.presentation.movies.view.MovieView
-import com.themoviedatabase.android.ui.home.movies.model.MDBCollection
+import com.themoviedatabase.android.presentation.collections.view.CollectionView
+import com.themoviedatabase.android.ui.collections.model.MDBCollection
 import com.themoviedatabase.core.domain.model.MDBResult
 import com.themoviedatabase.core.presentation.base.MDBBasePresenter
 import kotlinx.coroutines.CoroutineDispatcher
@@ -15,11 +15,11 @@ import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class MoviePresenter @Inject constructor(@MainDispatcher private val mainDispatcher: CoroutineDispatcher,
-                                         private val movieCollectionUseCase: GetMovieCollectionUseCase
-                                         ) : MDBBasePresenter<MovieView>() {
+class CollectionPresenter @Inject constructor(@MainDispatcher private val mainDispatcher: CoroutineDispatcher,
+                                              private val movieCollectionUseCase: GetMovieCollectionUseCase
+                                         ) : MDBBasePresenter<CollectionView>() {
     @ExperimentalCoroutinesApi
-    fun loadCollection(category: MDBMoviesCategory) {
+    fun loadCollection(category: MDBCollectionCategory) {
         launch {
             movieCollectionUseCase.invoke(category).onCompletion {
                 launch(mainDispatcher) {

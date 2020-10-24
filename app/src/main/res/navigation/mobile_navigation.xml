@@ -7,21 +7,40 @@
 
     <fragment
         android:id="@+id/navigation_latest"
-        android:name="com.themoviedatabase.android.ui.home.movies.LatestMoviesView"
+        android:name="com.themoviedatabase.android.ui.collections.LatestCollectionView"
         android:label="@string/title_latest"
-        tools:layout="@layout/fragment_movies" />
+        tools:layout="@layout/fragment_collections" >
+        <action
+            android:id="@+id/action_navigation_latest_to_navigation_detail"
+            app:destination="@id/navigation_detail" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_popular"
-        android:name="com.themoviedatabase.android.ui.home.movies.PopularMoviesView"
+        android:name="com.themoviedatabase.android.ui.collections.PopularCollectionView"
         android:label="@string/title_popular"
-        tools:layout="@layout/fragment_movies" />
-
+        tools:layout="@layout/fragment_collections" >
+        <action
+            android:id="@+id/action_navigation_latest_to_navigation_detail"
+            app:destination="@id/navigation_detail" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_upcoming"
-        android:name="com.themoviedatabase.android.ui.home.movies.UpComingMoviesView"
+        android:name="com.themoviedatabase.android.ui.collections.UpComingCollectionView"
         android:label="@string/title_upcoming"
-        tools:layout="@layout/fragment_movies" />
-
+        tools:layout="@layout/fragment_collections">
+        <action
+            android:id="@+id/action_navigation_latest_to_navigation_detail"
+            app:destination="@id/navigation_detail" />
+    </fragment>
+    <activity
+        android:id="@+id/navigation_detail"
+        android:name="com.themoviedatabase.android.ui.movies.detail.DetailMovieScreen"
+        tools:layout="@layout/screen_detail" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </activity>
 
 </navigation>

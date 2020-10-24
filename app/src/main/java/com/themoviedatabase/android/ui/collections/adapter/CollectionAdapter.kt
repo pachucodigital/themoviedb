@@ -1,4 +1,4 @@
-package com.themoviedatabase.android.ui.home.movies.adapter
+package com.themoviedatabase.android.ui.collections.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,9 +7,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.drawee.view.SimpleDraweeView
 import com.themoviedatabase.android.R
-import com.themoviedatabase.android.ui.home.movies.model.MDBCollection
+import com.themoviedatabase.android.ui.collections.model.MDBCollection
 
-class MoviesCollectionAdapter(private val results: List<MDBCollection>, private val onItemSelectedListener: SelectMovieListener?) : RecyclerView.Adapter<MoviesCollectionAdapter.MoviesCollectionHolder>() {
+class CollectionAdapter(private val results: List<MDBCollection>, private val onItemSelectedListener: SelectMovieListener?) : RecyclerView.Adapter<CollectionAdapter.MoviesCollectionHolder>() {
 
     class MoviesCollectionHolder(itemView: View, private val onItemSelectedListener: SelectMovieListener?) : RecyclerView.ViewHolder(itemView) {
 

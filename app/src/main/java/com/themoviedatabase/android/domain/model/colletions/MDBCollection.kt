@@ -1,11 +1,11 @@
-package com.themoviedatabase.android.domain.model.movies
+package com.themoviedatabase.android.domain.model.colletions
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import java.lang.StringBuilder
 
 @Serializable
-data class MDBMovieCollection(
+data class MDBCollection(
         @SerialName("adult") val adult: Boolean,
          @SerialName("backdrop_path") val backdrop_path: String?,
         @SerialName("genres") val genres: List<String>? = null,
