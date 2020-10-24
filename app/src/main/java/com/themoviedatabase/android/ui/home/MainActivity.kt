@@ -35,10 +35,13 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    override fun onBackPressed() {
+        finish()
+    }
 
     companion object {
         fun provideNavigateIntent(): Intent {
-            return Intent().setClassName(BuildConfig.APPLICATION_ID, MainActivity::class.simpleName!!)
+            return Intent().setClassName(BuildConfig.APPLICATION_ID, "com.themoviedatabase.android.ui.home.MainActivity")
         }
     }
 }
