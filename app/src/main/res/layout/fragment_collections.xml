@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/movies_main_content"
+    android:id="@+id/collections_main_content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.collections.LatestColletionView">
+    android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/movies_recyclerview"
+        android:id="@+id/collection_recyclerview"
         tools:listitem="@layout/item_movie"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     </androidx.recyclerview.widget.RecyclerView>
     <include android:id="@+id/loader" layout="@layout/view_loader"/>
+    <include android:id="@+id/collection_error_network" layout="@layout/view_network_error"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

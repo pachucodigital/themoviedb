@@ -1,5 +1,6 @@
 package com.themoviedatabase.android.data.db.dao
 
+import android.util.Log
 import androidx.room.*
 import com.themoviedatabase.android.data.db.entity.CollectionEntity
 import kotlinx.coroutines.flow.Flow
@@ -23,4 +24,13 @@ interface CollectionsDao {
 
     @Delete
     suspend fun delete(collection: CollectionEntity)
+
+    @Query("DELETE FROM CollectionEntity")
+    suspend fun deleteAllCollection()
+
+    @Transaction
+    suspend fun refreshCollection(id: String, collections: List<CollectionEntity>) {
+        deleteCollection(id)
+        insertAll(collections)
+    }
 }

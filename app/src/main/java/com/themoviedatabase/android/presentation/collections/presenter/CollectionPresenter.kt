@@ -35,8 +35,7 @@ class CollectionPresenter @Inject constructor(@MainDispatcher private val mainDi
                     }
                     is MDBResult.Error -> {
                         launch(mainDispatcher) {
-                            Log.e("LoadCollection", "${it.exception}")
-                            if(it.exception is NetworkException) {
+                            if(it.exception is NetworkException  || it.exception is UnknownHostException) {
                                 view?.showRetry()
                             } else {
                                 view?.showMessage(it.exception.message!!)

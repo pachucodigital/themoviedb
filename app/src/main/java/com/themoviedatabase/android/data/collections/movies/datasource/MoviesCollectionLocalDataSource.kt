@@ -46,20 +46,19 @@ class MoviesCollectionLocalDataSource @Inject constructor(private val collection
     }
 
     override suspend fun saveRecentCollection(list: List<MovieDto>) {
-
-        val recents= arrayListOf<CollectionEntity>()
+        val recentList= arrayListOf<CollectionEntity>()
         for(movie: MovieDto in list){
-            recents.add(CollectionEntity(movie.id, MDBCollectionCategory.Latest.toString(), Json.encodeToString(movie)))
+            recentList.add(CollectionEntity(movie.id, MDBCollectionCategory.Latest.toString(), Json.encodeToString(movie)))
         }
-        collectionsDao.insertAll(recents)
+        collectionsDao.refreshCollection(MDBCollectionCategory.Popular.toString(), recentList)
     }
 
     override suspend fun savePopularCollection(list: List<MoviesCollectionDto>) {
-        val popular= arrayListOf<CollectionEntity>()
+        val popularList= arrayListOf<CollectionEntity>()
         for(movie: MoviesCollectionDto in list){
-            popular.add(CollectionEntity(movie.id, MDBCollectionCategory.Popular.toString(), Json.encodeToString(movie)))
+            popularList.add(CollectionEntity(movie.id, MDBCollectionCategory.Popular.toString(), Json.encodeToString(movie)))
         }
-        collectionsDao.insertAll(popular)
+        collectionsDao.refreshCollection(MDBCollectionCategory.Popular.toString(), popularList)
     }
 
     override suspend fun saveUpomingCollection(list: List<MoviesCollectionDto>) {
@@ -67,6 +66,6 @@ class MoviesCollectionLocalDataSource @Inject constructor(private val collection
         for(movie: MoviesCollectionDto in list){
             upcoming.add(CollectionEntity(movie.id, MDBCollectionCategory.UpComing.toString(), Json.encodeToString(movie)))
         }
-        collectionsDao.insertAll(upcoming)
+        collectionsDao.refreshCollection(MDBCollectionCategory.UpComing.toString(), upcoming)
     }
 }

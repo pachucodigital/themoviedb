@@ -27,10 +27,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupNavigation(){
         val navController = findNavController(R.id.nav_host_fragment)
-        val appBarConfiguration = AppBarConfiguration(setOf(R.id.navigation_latest, R.id.navigation_popular, R.id.navigation_upcoming ))
+        val appBarConfiguration = AppBarConfiguration(setOf(R.id.navigation_latest, R.id.navigation_popular, R.id.navigation_upcoming))
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.navView.setupWithNavController(navController)
-
 
     }
 
@@ -41,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         fun provideNavigateIntent(): Intent {
-            return Intent().setClassName(BuildConfig.APPLICATION_ID, "com.themoviedatabase.android.ui.home.MainActivity")
+            return Intent().setClassName(BuildConfig.APPLICATION_ID, "com.themoviedatabase.android.ui.home.MainActivity").setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
         }
     }
 }

@@ -23,8 +23,7 @@ abstract class BaseCollectionView : BaseFragment<CollectionPresenter>(), Collect
     @Inject
     lateinit var presenter: CollectionPresenter
 
-    protected var binding: FragmentCollectionsBinding? = null
-    protected var mSnackbar: Snackbar? = null
+    private var binding: FragmentCollectionsBinding? = null
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -50,7 +49,11 @@ abstract class BaseCollectionView : BaseFragment<CollectionPresenter>(), Collect
     }
 
     override fun initView() {
-        binding?.moviesRecyclerview?.layoutManager = LinearLayoutManager(context)
+        binding?.collectionRecyclerview?.layoutManager = LinearLayoutManager(context)
+        binding?.collectionErrorNetwork?.btnRetry?.setOnClickListener {
+            loadCollection()
+            binding?.collectionErrorNetwork?.errorNetworkMain?.visibility = View.GONE
+        }
         presenter.attach(this)
     }
 
@@ -60,30 +63,24 @@ abstract class BaseCollectionView : BaseFragment<CollectionPresenter>(), Collect
 
     override fun showMessage(message: String) {
         if(binding != null) {
-            Snackbar.make(binding?.moviesMainContent!!, message, Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(binding?.collectionsMainContent!!, message, Snackbar.LENGTH_SHORT).show()
         }
 
     }
 
     override fun showMessage(message: Int) {
         if(binding != null) {
-            Snackbar.make(binding?.moviesMainContent!!, message, Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(binding?.collectionsMainContent!!, message, Snackbar.LENGTH_SHORT).show()
         }
     }
 
     override fun showCollectionMovies(collection: List<MDBCollection>) {
-        binding?.moviesRecyclerview?.adapter = CollectionAdapter(collection,this)
+        binding?.collectionRecyclerview?.adapter = CollectionAdapter(collection,this)
     }
 
     override fun showRetry() {
-        mSnackbar = Snackbar.make(binding?.moviesMainContent!!, getString(R.string.error_conect_network), Snackbar.LENGTH_INDEFINITE)
-            .setAction(
-                getString(R.string.error_retry)
-            ) {
-                loadCollection()
-                mSnackbar?.dismiss()
-            }
-        mSnackbar?.show()
+        binding?.collectionErrorNetwork?.errorNetworkMain?.visibility = View.VISIBLE
+
     }
 
     abstract fun loadCollection()
