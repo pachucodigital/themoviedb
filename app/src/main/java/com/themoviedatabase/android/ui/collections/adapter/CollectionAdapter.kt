@@ -7,13 +7,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.drawee.view.SimpleDraweeView
 import com.themoviedatabase.android.R
-import com.themoviedatabase.android.ui.collections.model.MDBCollection
+import com.themoviedatabase.android.ui.collections.model.MDBItemCollection
 
-class CollectionAdapter(private val results: List<MDBCollection>, private val onItemSelectedListener: SelectMovieListener?) : RecyclerView.Adapter<CollectionAdapter.MoviesCollectionHolder>() {
+class CollectionAdapter(private val results: List<MDBItemCollection>, private val onItemSelectedListener: SelectMovieListener?) : RecyclerView.Adapter<CollectionAdapter.MoviesCollectionHolder>() {
 
     class MoviesCollectionHolder(itemView: View, private val onItemSelectedListener: SelectMovieListener?) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(item: MDBCollection) {
+        fun bind(item: MDBItemCollection) {
 
             itemView.setOnClickListener {
                 onItemSelectedListener?.onSelectMovie(item.id)

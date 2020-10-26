@@ -1,22 +1,18 @@
 package com.themoviedatabase.android.ui.collections
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import com.themoviedatabase.android.R
 import com.themoviedatabase.android.databinding.FragmentCollectionsBinding
-import com.themoviedatabase.android.domain.model.colletions.MDBCollectionCategory
 import com.themoviedatabase.android.presentation.collections.presenter.CollectionPresenter
 import com.themoviedatabase.android.presentation.collections.view.CollectionView
 import com.themoviedatabase.android.ui.collections.adapter.CollectionAdapter
-import com.themoviedatabase.android.ui.collections.model.MDBCollection
+import com.themoviedatabase.android.ui.collections.model.MDBItemCollection
 import com.themoviedatabase.core.ui.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 @AndroidEntryPoint
 abstract class BaseCollectionView : BaseFragment<CollectionPresenter>(), CollectionView , CollectionAdapter.SelectMovieListener{
@@ -74,7 +70,7 @@ abstract class BaseCollectionView : BaseFragment<CollectionPresenter>(), Collect
         }
     }
 
-    override fun showCollectionMovies(collection: List<MDBCollection>) {
+    override fun showCollectionMovies(collection: List<MDBItemCollection>) {
         binding?.collectionRecyclerview?.adapter = CollectionAdapter(collection,this)
     }
 

@@ -7,7 +7,7 @@ import java.lang.StringBuilder
 @Serializable
 data class MDBCollection(
         @SerialName("adult") val adult: Boolean,
-         @SerialName("backdrop_path") val backdrop_path: String?,
+        @SerialName("backdrop_path") val backdrop_path: String?,
         @SerialName("genres") val genres: List<String>? = null,
         @SerialName("id") val id: Int,
         @SerialName("original_language") val original_language: String,
