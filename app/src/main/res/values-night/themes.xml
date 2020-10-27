@@ -12,6 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="textInputStyle">@style/TextInput</item>
     </style>
 
     <style name="MDBTitle" parent="Theme.TheMovieDatabaseApp">
@@ -20,5 +21,27 @@
         <item name="android:textSize">24sp</item>
     </style>
 
+    <style name="MDBBottomNavigation">
+        <item name="itemBackground">@drawable/bg_tab_teel</item>
+        <item name="itemIconTint">@color/selector_teal_700</item>
+        <item name="itemTextColor">@color/selector_teal_700</item>
+    </style>
 
+    <style name="MDBToolbar" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:background">@color/design_dark_default_color_surface</item>
+        <item name="titleTextColor">@color/teal_200</item>
+    </style>
+
+    <style name="ItemCollectionTitle" parent="MDBTitle">
+        <item name="android:textColor">@color/teal_500</item>
+    </style>
+    <style name="ItemCollectionSubtitle" parent="MDBSubtitle">
+        <item name="android:textColor">@color/teal_500</item>
+    </style>
+    <style name="ItemCollectionDescription" parent="MDBDescription">
+        <item name="android:textColor">@color/teal_200</item>
+    </style>
+    <style name="ItemCollectionLabels" parent="MDBLabel">
+        <item name="android:textColor">@color/teal_700</item>
+    </style>
 </resources>

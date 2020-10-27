@@ -1,29 +1,28 @@
 package com.themoviedatabase.android.ui.siging
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.view.View
-import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doOnTextChanged
 import com.google.android.material.snackbar.Snackbar
-import com.themoviedatabase.android.MainActivity
-import com.themoviedatabase.android.databinding.ScreenLoginBinding
+import com.themoviedatabase.android.ui.home.MainActivity
+import com.themoviedatabase.android.databinding.ScreenSigingBinding
 import com.themoviedatabase.android.presentation.siging.presenter.SigingPresenter
 import com.themoviedatabase.android.presentation.siging.view.SigingView
 import com.themoviedatabase.core.ui.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class SigningScreen : BaseActivity<SigingPresenter>(), SigingView {
-    private lateinit var binding: ScreenLoginBinding
+    private lateinit var binding: ScreenSigingBinding
     @Inject
     lateinit var presenter: SigingPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ScreenLoginBinding.inflate(layoutInflater)
+        binding = ScreenSigingBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
         initView()
@@ -40,6 +39,7 @@ class SigningScreen : BaseActivity<SigingPresenter>(), SigingView {
         }
     }
 
+    @ExperimentalCoroutinesApi
     private fun validateFields() {
         presenter.validateFields(binding.sigingInputUser.text.toString(), binding.sigingInputPassword.text.toString())
     }

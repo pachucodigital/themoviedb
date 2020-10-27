@@ -51,4 +51,27 @@
         <item name="android:textSize">16sp</item>
         <item name="android:fontFamily">@font/helvetica_neue_medium</item>
     </style>
+
+    <style name="MDBBottomNavigation">
+        <item name="itemIconTint">@color/selector_tangaro</item>
+        <item name="itemBackground">@drawable/bg_tab_tangaro</item>
+        <item name="itemTextColor">@color/selector_tangaro</item>
+    </style>
+
+    <style name="MDBToolbar" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:background">@color/tangaroa_200</item>
+        <item name="titleTextColor">@color/white</item>
+    </style>
+    <style name="ItemCollectionTitle" parent="MDBTitle">
+        <item name="android:textColor">@color/tangaroa_700</item>
+    </style>
+    <style name="ItemCollectionSubtitle" parent="MDBSubtitle">
+        <item name="android:textColor">@color/tangaroa_700</item>
+    </style>
+    <style name="ItemCollectionDescription" parent="MDBDescription">
+        <item name="android:textColor">@color/tangaroa_200</item>
+    </style>
+    <style name="ItemCollectionLabels" parent="MDBLabel">
+        <item name="android:textColor">@color/tangaroa_200</item>
+    </style>
 </resources>

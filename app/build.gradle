@@ -4,6 +4,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.serialization") version "1.4.10"
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -106,10 +107,22 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
+    //fresco
+    implementation 'com.facebook.fresco:fresco:2.3.0'
+
+    implementation "androidx.room:room-runtime:$rootProject.ext.room_version"
+    kapt "androidx.room:room-compiler:$rootProject.ext.room_version"
+
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:$rootProject.ext.room_version"
+
     //test
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    testImplementation "org.mockito:mockito-core:3.5.15"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.0-M1"
 
 
 }

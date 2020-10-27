@@ -119,10 +119,7 @@ class SigingPresenter @Inject constructor(@MainDispatcher private val mainDispat
         }
     }
 
-    fun doLogin(user: String, password: String) {
-         validateFields(user, password)
-    }
-
+    @ExperimentalCoroutinesApi
     fun validateFields(user: String, password: String) {
        launch {
             val params = SigningRequestParams(user, password)

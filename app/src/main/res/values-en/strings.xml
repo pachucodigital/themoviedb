@@ -1,0 +1,8 @@
+<resources>
+    <string name="title_latest">Latest</string>
+    <string name="title_popular">Popular</string>
+    <string name="title_upcoming">Upcoming</string>
+    <string name="title_configuration">Settings</string>
+    <string name="error_retry">RETRY</string>
+    <string name="error_conect_network">Unable to connect</string>
+</resources>
