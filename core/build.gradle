@@ -1,0 +1,58 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.4.10"
+}
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    //android dependencies
+    implementation "androidx.appcompat:appcompat:$rootProject.ext.appcompact_version"
+    implementation "com.google.android.material:material:$rootProject.ext.material_version"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    //kotlin dependencies
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.ext.coroutine_version"
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$rootProject.ext.serialization_version")
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-core:$rootProject.ext.serialization_core"
+
+    //retrofit and okhttp dependencies
+    implementation "com.squareup.okhttp3:okhttp:$rootProject.ext.okhttp3_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttp3_version"
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofit_version"
+    implementation "com.squareup.retrofit2:converter-scalars:$rootProject.ext.converter_scalars_version"
+
+    //testing dependencies
+    testImplementation 'junit:junit:4.13.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}

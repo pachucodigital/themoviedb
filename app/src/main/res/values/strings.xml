@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name" translatable="false">The Movie Database App</string>
+    <string name="title_latest">Recientes</string>
+    <string name="title_popular">Populares</string>
+    <string name="title_upcoming">Proximamente</string>
+    <string name="title_configuration">Configuraciones</string>
+    <string name="error_retry">Reintentar</string>
+    <string name="error_conect_network">No se puede conectar</string>
+
+</resources>
